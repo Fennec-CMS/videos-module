@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-left">
+            <div class="btn-group">
+                <a href="<?php echo $this->linkToRoute('admin-video-new');?>" class="btn btn-success"><i class="fa fa-plus-circle"></i> <?php echo $this->translate('Create new video');?></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 200px;"></th>
+                    <th style="width: 50%;">Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="tr-draggable">
+<?php
+foreach ($this->list as $video) {
+?>
+                <tr data-id="<?php echo $video->getId();?>">
+                    <td>
+                      <img src="<?php echo '/uploads/videos/' . $video->getImage();?>" style="width: 200px;">
+                    </td>
+                    <td><?php echo $video->getTitle();?></td>
+                    <td>
+                      <div class="btn-group">
+                      
+                      
+                        <a href="<?php echo $video->getFullUrl();?>" target="_blank" class="btn btn-info">
+                          <i class="fa fa-youtube-play"></i>
+                        </a>
+                        
+                        <a href="<?php echo $this->linkToRoute('admin-video-edit', array('id' => $video->getId()));?>" class="btn btn-default">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                        
+                        <a href="<?php echo $this->linkToRoute('admin-video-delete', array('id' => $video->getId()));?>" class="btn btn-danger btn-delete">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      </div>
+                    </td>
+                </tr>
+<?php
+}
+?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style type="text/css">
+tr.placeholder {
+  height: 75px;
+  border: 2px dashed #333;
+}
+</style>
